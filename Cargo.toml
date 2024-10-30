@@ -3,4 +3,12 @@ name = "mgv_simulator"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "mgv_simulator"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mgv_simulator"
+path = "src/main.rs"
+
 [dependencies]
