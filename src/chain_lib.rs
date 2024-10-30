@@ -58,10 +58,7 @@ impl User {
 
     pub fn spend_token_balance(&mut self, token: &str, amount: u128) -> Result<(), &'static str> {
         let balance = self.balances.get(token).unwrap_or(&0);
-        println!("In spend_token_balance");
-        println!("Balances: {:?}", self.balances);
-        println!("Token: {}", token);
-        println!("Amount: {}", amount);
+
         if *balance >= amount {
             let new_balance = balance.checked_sub(amount).unwrap();
             self.balances.insert(token.to_string(), new_balance);

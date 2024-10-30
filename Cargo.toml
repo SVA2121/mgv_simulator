@@ -12,3 +12,4 @@ name = "mgv_simulator"
 path = "src/main.rs"
 
 [dependencies]
+derive_more = { version = "0.99.17", features = ["as_ref", "as_mut"] }

@@ -1,16 +1,17 @@
 
 use crate::chain_lib::User;
+use std::sync::{Arc, Mutex};
 
 const OFFER_WRITE_COST: u128 = 200_000; // TO CHECK
 //const OFFER_DELETE_COST: u128 = 100_000; // TO CHECK
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Side {
+pub enum OfferSide {
     Ask,
     Bid,
 }
 
-impl Side {
+impl OfferSide {
     pub fn flipped(&self) -> Self {
         match self {
             Self::Ask => Self::Bid,
@@ -19,13 +20,19 @@ impl Side {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum OrderSide {
+    Buy,
+    Sell,
+}
+
 ////////////////////////
 // Offer
 ///////////////////////
 
 pub struct Offer {
-    pub user_id: String,
-    pub side: Side,
+    pub maker:  Arc<Mutex<User>>,
+    pub side: OfferSide,
     pub price: u128,
     pub volume: u128,
     pub gasreq: u128,
@@ -35,7 +42,7 @@ pub struct Offer {
 impl std::fmt::Debug for Offer {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("Offer")
-            .field("user_id", &self.user_id)
+            .field("maker", &self.maker)
             .field("side", &self.side)
             .field("price", &self.price)
             .field("volume", &self.volume)
@@ -48,7 +55,7 @@ impl std::fmt::Debug for Offer {
 impl Clone for Offer {
     fn clone(&self) -> Self {
         Self {
-            user_id: self.user_id.clone(),
+            maker: Arc::clone(&self.maker),
             side: self.side,
             price: self.price,
             volume: self.volume,
@@ -59,9 +66,9 @@ impl Clone for Offer {
 }
 
 impl Offer {
-    pub fn new(user_id: String, side: Side, price: u128, volume: u128, gasreq: u128) -> Self {
+    pub fn new(maker: Arc<Mutex<User>>, side: OfferSide, price: u128, volume: u128, gasreq: u128) -> Self {
         Self {
-            user_id,
+            maker,
             side,
             price,
             volume,
@@ -78,9 +85,9 @@ impl Offer {
         self
     }
 
-    pub fn execute_post_hook(&mut self, market: &mut Market, user: &mut User) {
+    pub fn execute_post_hook(&mut self, market: &mut Market, maker: &mut User) {
         if let Some(hook) = &mut self.post_hook {
-            hook(market, user);
+            hook(market, maker);
         }
     }
 }
@@ -89,8 +96,8 @@ impl Offer {
 impl PartialOrd for Offer {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         match self.side {
-            Side::Ask => self.price.partial_cmp(&other.price),
-            Side::Bid => other.price.partial_cmp(&self.price),
+            OfferSide::Ask => self.price.partial_cmp(&other.price),
+            OfferSide::Bid => other.price.partial_cmp(&self.price),
         }
     }
 }
@@ -126,8 +133,10 @@ pub struct Market {
 }
 
 impl Market {
-    pub fn new() -> Self {
+    pub fn new(base: String, quote: String) -> Self {
         Self {
+            base,
+            quote,
             bids: Vec::new(),
             asks: Vec::new(),
             offer_write_cost: OFFER_WRITE_COST,
@@ -136,11 +145,11 @@ impl Market {
 
     fn insert(&mut self, offer: Offer) {
         match offer.side {
-            Side::Bid => {
+            OfferSide::Bid => {
                 self.bids.push(offer);
                 self.bids.sort_by(|a, b| b.price.cmp(&a.price));
             }
-            Side::Ask => {
+            OfferSide::Ask => {
                 self.asks.push(offer);
                 self.asks.sort_by(|a, b| a.price.cmp(&b.price));
             }
@@ -148,12 +157,12 @@ impl Market {
     }
 
     // Add a new method that requires a User to insert an offer
-    pub fn place_offer(&mut self, user: &mut User, offer: Offer) -> Result<(), &'static str> {
+    pub fn place_offer(&mut self, offer: Offer) -> Result<(), &'static str> {
         // Calculate required gas cost
         let gas_cost = self.offer_write_cost;
         
         // Check if user can pay for gas
-        user.spend_native(gas_cost)?;
+        offer.maker.lock().unwrap().spend_native(gas_cost)?;
         
         self.insert(offer);
         Ok(())
@@ -168,6 +177,81 @@ impl Market {
         self.asks.first()
     }
 
+ 
+    pub fn market_order(&mut self, taker: &Arc<Mutex<User>>, side: OrderSide, volume: u128) -> Result<(), &'static str> {
+        let offers = match side {
+            OrderSide::Buy => &self.asks,  // If user wants to buy (bid), look at asks
+            OrderSide::Sell => &self.bids,  // If user wants to sell (ask), look at bids
+        };
+        
+        // Calculate total volume and gas requirements
+        let mut remaining_volume = volume;
+        let mut total_gas = 0u128;
+        let mut offers_to_execute = 0;
+        
+        for offer in offers {
+            if remaining_volume == 0 {
+                break;
+            }
+            total_gas += offer.gasreq;
+            remaining_volume = remaining_volume.saturating_sub(offer.volume);
+            offers_to_execute += 1;
+        }
+        
+        // Check if we can fill the order
+        if remaining_volume > 0 {
+            return Err("Insufficient liquidity");
+        }
+
+        taker.lock().unwrap().spend_native(total_gas)?;
+
+        let mut remaining_volume = volume;
+        let offers_to_remove = offers_to_execute;  // Store how many offers we'll process
+    
+        for _ in 0..offers_to_remove {
+            let offer = match side {
+                OrderSide::Buy => self.asks.remove(0),  // Remove from front of asks
+                OrderSide::Sell => self.bids.remove(0),  // Remove from front of bids
+            };
+            
+            let trade_volume = remaining_volume.min(offer.volume);
+            let trade_amount = trade_volume * offer.price;
+            
+
+            // Transfer tokens
+            match side {
+                OrderSide::Buy => {
+
+                    // Taker sends quote tokens, receives base tokens
+                    taker.lock().unwrap().spend_token_balance(&self.quote, trade_amount)?;
+                    offer.maker.lock().unwrap().add_token_balance(&self.quote, trade_amount);
+                    taker.lock().unwrap().add_token_balance(&self.base, trade_volume);
+                    offer.maker.lock().unwrap().spend_token_balance(&self.base, trade_volume)?;
+                }
+                OrderSide::Sell => {
+                    // Taker sends base tokens, receives quote tokens
+                    taker.lock().unwrap().spend_token_balance(&self.base, trade_volume)?;
+                    offer.maker.lock().unwrap().add_token_balance(&self.base, trade_volume);
+                    taker.lock().unwrap().add_token_balance(&self.quote, trade_amount);
+                    offer.maker.lock().unwrap().spend_token_balance(&self.quote, trade_amount)?;
+                }
+            }
+            
+            // Execute post-hook if any
+            if let Some(mut hook) = offer.post_hook {
+                let mut maker = offer.maker.lock().unwrap();
+                hook(self, &mut maker);
+            }
+            
+            remaining_volume -= trade_volume;
+            if remaining_volume == 0 {
+                break;
+            }
+        }
+
+        Ok(())
+    }
+     
     
 
 }
@@ -178,12 +262,14 @@ impl std::fmt::Display for Market {
         
         writeln!(f, "  Bids:")?;
         for bid in &self.bids {
-            writeln!(f, "    {} @ {} - {}", bid.volume, bid.price, bid.post_hook.is_some())?;
+            let user_id = bid.maker.lock().map(|user| user.id.clone()).unwrap_or_else(|_| "locked".to_string());
+            writeln!(f, "    {} @ {} - {},{}", bid.volume, bid.price, user_id, bid.post_hook.is_some())?;
         }
         
         writeln!(f, "  Asks:")?;
         for ask in &self.asks {
-            writeln!(f, "    {} @ {} - {}", ask.volume, ask.price, ask.post_hook.is_some())?;
+            let user_id = ask.maker.lock().map(|user| user.id.clone()).unwrap_or_else(|_| "locked".to_string()); 
+            writeln!(f, "    {} @ {} - {},{}", ask.volume, ask.price, user_id, ask.post_hook.is_some())?;
         }
         
         Ok(())
