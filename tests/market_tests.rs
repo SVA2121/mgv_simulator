@@ -8,8 +8,8 @@ const GASREQ: u128 = 100_000;
 
 #[test]
 fn test_place_offer() {
-    let maker = new_user!("maker", 100000000000000000);
-    maker.lock().unwrap().add_token_balance("USDC", 2000);
+    let maker = new_user!("maker", 100000000000000000.0);
+    maker.lock().unwrap().add_token_balance("USDC", 2000.0);
     
     let offer = new_offer!(maker, OfferSide::Bid, 2000, 1, GASREQ); 
     let mut market = Market::new("WETH".to_string(), "USDC".to_string());
@@ -19,10 +19,10 @@ fn test_place_offer() {
 
 #[test]
 fn test_market_order() {
-    let maker = new_user!("maker", 100000000000000000);
-    maker.lock().unwrap().add_token_balance("USDC", 2000);
-    let taker = new_user!("taker", 100000000000000000);
-    taker.lock().unwrap().add_token_balance("WETH", 1);
+    let maker = new_user!("maker", 100000000000000000.0);
+    maker.lock().unwrap().add_token_balance("USDC", 2000.0);
+    let taker = new_user!("taker", 100000000000000000.0);
+    taker.lock().unwrap().add_token_balance("WETH", 1.0);
 
     let mut market = Market::new("WETH".to_string(), "USDC".to_string());
 
@@ -32,20 +32,20 @@ fn test_market_order() {
 
     
     market.market_order(&taker, OrderSide::Sell, 1).unwrap();
-    assert_eq!(*maker.lock().unwrap().balances.get("WETH").unwrap(), 1);
-    assert_eq!(*taker.lock().unwrap().balances.get("USDC").unwrap(), 2000);
+    assert_eq!(*maker.lock().unwrap().balances.get("WETH").unwrap(), 1.0);
+    assert_eq!(*taker.lock().unwrap().balances.get("USDC").unwrap(), 2000.0);
 
 }
 
 #[test]
 fn test_post_hook_alternating_offers() {
-    let maker = new_user!("maker", 100000000000000000);
-    maker.lock().unwrap().add_token_balance("USDC", 2000);
-    maker.lock().unwrap().add_token_balance("WETH", 1);
+    let maker = new_user!("maker", 100000000000000000.0);
+    maker.lock().unwrap().add_token_balance("USDC", 2000.0);
+    maker.lock().unwrap().add_token_balance("WETH", 1.0);
     
-    let taker = new_user!("taker", 100000000000000000);
-    taker.lock().unwrap().add_token_balance("WETH", 1);
-    taker.lock().unwrap().add_token_balance("USDC", 2000);
+    let taker = new_user!("taker", 100000000000000000.0);
+    taker.lock().unwrap().add_token_balance("WETH", 1.0);
+    taker.lock().unwrap().add_token_balance("USDC", 2000.0);
 
     let mut market = Market::new("WETH".to_string(), "USDC".to_string());
 

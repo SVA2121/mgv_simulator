@@ -1,134 +1,189 @@
-// use std::collections::HashMap;
-// use crate::chain_lib::User;
-// use std::fs;
-// use std::io;
-// use std::io::Write;
-// //use crate::strats_lib::StrategyLibrary;
-// use crate::read_utils::read_price_feed;
-// use crate::mgv_lib::Market;
-// // Represents a price point at a specific block
-#[derive(Debug, Clone)]
+use crate::mgv_lib::Market;
+use crate::strats_lib::Strategy;
+use crate::chain_lib::User;
+use std::sync::{Arc, Mutex};
+use std::collections::HashMap;
+use std::io::Write;
+use std::fs::OpenOptions;
+
+
+#[derive(Debug, Clone, Copy)]
 pub struct PricePoint {
     pub block: u64,
     pub price: f64,
 }
 
-// // Main simulator struct
-// pub struct Simulator {
-//     input_data: Vec<PricePoint>,
-//     users: HashMap<String, User>,
-//     strategies: HashMap<String, Box<dyn Fn(&PricePoint, &mut User)>>,
-//     user_strategies: HashMap<String, Vec<String>>
-// }
+impl PricePoint {
+    pub fn new(block: u64, price: f64) -> Self {
+        Self { block, price }
+    }
+}
 
-// impl Simulator {
-//     pub fn new(input_data: Vec<PricePoint>) -> Self {
-//         Simulator {
-//             input_data,
-//             users: HashMap::new(),
-//             strategies: HashMap::new(),
-//             user_strategies: HashMap::new(),
-//         }
-//     }
+impl std::fmt::Display for PricePoint {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Block: {} Price: {:.2}", self.block, self.price)
+    }
+}
 
-//     // Add a user to the simulation
-//     pub fn add_user(&mut self, user_id: String, initial_balance: u128) {
-//         self.users.insert(user_id.clone(), User::new(user_id, initial_balance));
-//     }
+pub struct Simulator {
+    pub market: Market,
+    pub price_feed: Vec<PricePoint>,
+    pub current_block: u64,
+    pub users: HashMap<String, Arc<Mutex<User>>>,
+    pub performance_metrics: HashMap<String, PerformanceMetrics>,
+    pub strategies: HashMap<String, Box<dyn Strategy>>,              // Added
+    pub user_strategies: HashMap<String, Vec<String>>,              // Added
+}
 
-//     pub fn add_strategy(&mut self, strategy_id: String, strategy: Box<dyn Fn(&PricePoint, &mut User)>) {
-//         self.strategies.insert(strategy_id, strategy);
-//     }
+#[derive(Debug, Default)]
+pub struct PerformanceMetrics {
+    pub total_trades: u64,
+    pub total_volume: f64,
+    pub total_profit_loss: f64,
+    pub initial_balance: f64,
+    pub current_balance: f64,
+}
 
-//     pub fn subscribe_user_to_strategy(&mut self, user_id: &str, strategy_id: &str) {
-//         self.user_strategies
-//             .entry(user_id.to_string())
-//             .or_insert_with(Vec::new)
-//             .push(strategy_id.to_string());
-//     }
 
-//     // Run the simulation with a given strategy
-//     pub fn run(&mut self) {
-//         for strategy in self.strategies.values_mut() {
-//             // TO DO : add multiple price feeds
-//             for price_point in &self.input_data {
-//                 println!("Price point: {:?}", price_point);
-//                 for (_user_id, user) in self.users.iter_mut() {
-//                     strategy(price_point, user);
-//                     println!("User: {:?}", user);
-//                 }
-//             }
-//         }
-//     }
-// }
+impl Simulator {
 
-// pub fn launch_simul_environment() {
-//     // 1. List available price feeds
-//     println!("Available price feeds:");
-//     let paths = fs::read_dir("data/input/").unwrap();
-//     let input_data_files: Vec<String> = paths
-//         .filter_map(|entry| {
-//             entry.ok().and_then(|e| 
-//                 e.path()
-//                     .file_name()
-//                     .and_then(|n| n.to_str().map(String::from))
-//             )
-//         })
-//         .collect();
+    pub fn new(market: Market, price_feed: Vec<PricePoint>) -> Self {
+        Self {
+            market,
+            price_feed,
+            current_block: 0,
+            users: HashMap::new(),
+            performance_metrics: HashMap::new(),
+            strategies: HashMap::new(),              // Added
+            user_strategies: HashMap::new(),         // Added
+        }
+    }
 
-//     for (i, file) in input_data_files.iter().enumerate() {
-//         println!("{}: {}", i + 1, file);
-//     }
+    pub fn add_user(&mut self, user_id: String, initial_balance: f64) -> Arc<Mutex<User>> {
+        let user = crate::new_user!(&user_id, initial_balance);
+        self.users.insert(user_id.clone(), Arc::clone(&user));
+        self.performance_metrics.insert(user_id, PerformanceMetrics::default());
+        user
+    }
 
-//     // 2. Get user selection for price feed
-//     print!("Select price feed (enter number): ");
-//     io::stdout().flush().unwrap();
-//     let mut input = String::new();
-//     io::stdin().read_line(&mut input).unwrap();
-//     let selection: usize = input.trim().parse().unwrap();
-//     let selected_file = &input_data_files[selection - 1];
+    pub fn step(&mut self) -> Option<&PricePoint> {
+        if self.current_block >= self.price_feed.len() as u64 {
+            return None;
+        }
+        
+        let price_point = &self.price_feed[self.current_block as usize];
+        self.current_block += 1;
+        
+        Some(price_point)
+    }
 
-//     // 3. Load price feed
-//     let input_data = read_input_data(&format!("data/input/{}", selected_file));
+    pub fn update_metrics(&mut self, user_id: &str, trade_volume: f64, profit_loss: f64) {
+        if let Some(metrics) = self.performance_metrics.get_mut(user_id) {
+            metrics.total_trades += 1;
+            metrics.total_volume += trade_volume;
+            metrics.total_profit_loss += profit_loss;
+            // Update current balance from user
+            if let Some(user) = self.users.get(user_id) {
+                if let Ok(user) = user.lock() {
+                    metrics.current_balance = user.get_native_balance() as f64;
+                }
+            }
+        }
+    }
 
-//     let mut market = Market::new(
-//         "WETH".to_string(),
-//         "USDC".to_string(),
-//     );
-//     // 4. Initialize strategy library and show options
-//     let strategy_lib = StrategyLibrary::new();
-//     let limit_order = LimitOrder::new(market, 1000.0, 100);
-//     strategy_lib.add_strategy("limit_order", Box::new(limit_order));
-//     println!("\nAvailable strategies:");
-//     for (i, strategy_name) in strategy_lib.list_strategies().iter().enumerate() {
-//         println!("{}: {}", i + 1, strategy_name);
-//     }
+    pub fn print_metrics(&self) {
+        println!("\n=== Performance Metrics ===");
+        for (user_id, metrics) in &self.performance_metrics {
+            println!("\nUser: {}", user_id);
+            println!("Total Trades: {}", metrics.total_trades);
+            println!("Total Volume: {:.2}", metrics.total_volume);
+            println!("Total P&L: {:.2}", metrics.total_profit_loss);
+            println!("Current Balance: {:.2}", metrics.current_balance);
+        }
+    }
 
-//     // 5. Get user selection for strategy
-//     print!("Select strategy (enter number): ");
-//     io::stdout().flush().unwrap();
-//     let mut input = String::new();
-//     io::stdin().read_line(&mut input).unwrap();
-//     let strategy_selection: usize = input.trim().parse().unwrap();
-//     let selected_strategy = &strategy_lib.list_strategies()[strategy_selection - 1];
 
-//     // 6. Set up simulation environment
-//     let mut simulator = Simulator::new(input_data.expect("Failed to read price feed"));
-    
-//     // Add a test user
-//     simulator.add_user("test_user".to_string(), 1000);
-    
-//     // Add selected strategy
-//     // Add selected strategy
-//     if let Some(strategy) = strategy_lib.get_strategy(selected_strategy) {
-//         simulator.add_strategy(
-//             selected_strategy.to_string(),
-//             Box::new(strategy)  // This works because fn is 'static
-//         );
-//     }
+    pub fn add_strategy(&mut self, strategy_id: String, strategy: Box<dyn Strategy>) {
+        self.strategies.insert(strategy_id, strategy);
+    }
 
-//     // 7. Run simulation
-//     simulator.run();
-    
-//     println!("Simulation complete!");
-// }
+    pub fn assign_strategy(&mut self, user_id: &str, strategy_id: &str) -> Result<(), &'static str> {
+        if !self.users.contains_key(user_id) || !self.strategies.contains_key(strategy_id) {
+            return Err("User or strategy not found");
+        }
+        
+        self.user_strategies
+            .entry(user_id.to_string())
+            .or_default()
+            .push(strategy_id.to_string());
+        
+        Ok(())
+    }
+
+    fn write_user_balance(&self, user_id: &str, block: u64, user: &User) -> std::io::Result<()> {
+
+        let file_path = format!("data/output/{}.txt", user_id);
+        let mut file = OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open(file_path)?;
+
+        let balance_list: Vec<String> = user.get_balance_list()
+            .iter()
+            .map(|b| format!("{}", b))
+            .collect();
+        // Write balance data for this block
+        writeln!(
+            file,
+            "{},{}", 
+            block,
+            balance_list.join(",")
+        )?;
+
+        Ok(())
+    }
+
+    pub fn run_simulation(&mut self) -> Result<(), &'static str> {
+        // Write initial balance data
+        for (user_id, user) in &self.users {
+            if let Ok(user) = user.lock() {
+                self.write_user_balance(user_id, 0, &user);
+            }
+        }
+
+        while self.current_block < self.price_feed.len() as u64 {
+            let price_point = &self.price_feed[self.current_block as usize];
+            
+            // Collect all the actions we need to take
+            let mut actions = Vec::new();
+            for (user_id, strategy_ids) in &self.user_strategies {
+                if let Some(user) = self.users.get(user_id) {
+                    for strategy_id in strategy_ids {
+                        if let Some(strategy) = self.strategies.get(strategy_id) {
+                            actions.push((strategy_id.clone(), Arc::clone(user)));
+                        }
+                    }
+                }
+            }
+            
+            // Execute the actions
+            for (strategy_id, user) in actions {
+                if let Some(strategy) = self.strategies.get_mut(&strategy_id) {
+                    strategy.execute(price_point, &mut self.market, user)?;
+                }
+            }
+
+            // Write balance data for each user
+            for (user_id, user) in &self.users {
+                if let Ok(user) = user.lock() {
+                    if let Err(_) = self.write_user_balance(user_id, self.current_block, &user) {
+                        return Err("Failed to write balance data");
+                    }
+                }
+            }
+            
+            self.current_block += 1;
+        }
+        Ok(())
+    }
+}

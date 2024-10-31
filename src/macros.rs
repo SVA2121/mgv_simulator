@@ -1,6 +1,3 @@
-use std::sync::{Arc, Mutex};
-use crate::chain_lib::User;
-use crate::mgv_lib::{Offer};
 
 #[macro_export]
 macro_rules! new_user {

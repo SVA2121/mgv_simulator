@@ -162,7 +162,7 @@ impl Market {
         let gas_cost = self.offer_write_cost;
         
         // Check if user can pay for gas
-        offer.maker.lock().unwrap().spend_native(gas_cost)?;
+        offer.maker.lock().unwrap().spend_native(gas_cost as f64)?;
         
         self.insert(offer);
         Ok(())
@@ -203,7 +203,7 @@ impl Market {
             return Err("Insufficient liquidity");
         }
 
-        taker.lock().unwrap().spend_native(total_gas)?;
+        taker.lock().unwrap().spend_native(total_gas as f64)?;
 
         let mut remaining_volume = volume;
         let offers_to_remove = offers_to_execute;  // Store how many offers we'll process
@@ -223,17 +223,17 @@ impl Market {
                 OrderSide::Buy => {
 
                     // Taker sends quote tokens, receives base tokens
-                    taker.lock().unwrap().spend_token_balance(&self.quote, trade_amount)?;
-                    offer.maker.lock().unwrap().add_token_balance(&self.quote, trade_amount);
-                    taker.lock().unwrap().add_token_balance(&self.base, trade_volume);
-                    offer.maker.lock().unwrap().spend_token_balance(&self.base, trade_volume)?;
+                    taker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64)?;
+                    offer.maker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64);
+                    taker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64);
+                    offer.maker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64)?;
                 }
                 OrderSide::Sell => {
                     // Taker sends base tokens, receives quote tokens
-                    taker.lock().unwrap().spend_token_balance(&self.base, trade_volume)?;
-                    offer.maker.lock().unwrap().add_token_balance(&self.base, trade_volume);
-                    taker.lock().unwrap().add_token_balance(&self.quote, trade_amount);
-                    offer.maker.lock().unwrap().spend_token_balance(&self.quote, trade_amount)?;
+                    taker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64)?;
+                    offer.maker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64);
+                    taker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64);
+                    offer.maker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64)?;
                 }
             }
             
