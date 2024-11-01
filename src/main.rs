@@ -38,7 +38,7 @@ fn main() -> Result<(), &'static str> {
     simulator.assign_strategy("taker", "arbitrage_1")?;
     
     // Run simulation
-    simulator.run_simulation()?;
+    simulator.run_simulation(true)?;
     simulator.print_metrics();
     
     Ok(())

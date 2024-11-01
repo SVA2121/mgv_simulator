@@ -7,13 +7,13 @@ use std::sync::{Arc, Mutex};
 // Example implementation of a simple limit order strategy
 pub struct LimitOrderStrategy {
     trigger_price: f64,
-    volume: u128,
+    volume: f64,
     side: OfferSide,
     executed: bool,
 }
 
 impl LimitOrderStrategy {
-    pub fn new(trigger_price: f64, volume: u128, side: OfferSide) -> Self {
+    pub fn new(trigger_price: f64, volume: f64, side: OfferSide) -> Self {
         Self {
             trigger_price,
             volume,
@@ -43,7 +43,7 @@ impl Strategy for LimitOrderStrategy {
            ((self.side == OfferSide::Bid && price_point.price <= self.trigger_price) ||
             (self.side == OfferSide::Ask && price_point.price >= self.trigger_price)) {
             
-            let offer = crate::new_offer!(user, self.side, self.trigger_price as u128, self.volume, 100_000);
+            let offer = crate::new_offer!(user, self.side, self.trigger_price, self.volume, 100_000);
             market.place_offer(offer)?;
             println!("Market state: {:?}", market);
             self.executed = true;
@@ -58,7 +58,7 @@ impl Strategy for LimitOrderStrategy {
                 Ok(())
             }
             "volume" => {
-                self.volume = value as u128;
+                self.volume = value;
                 Ok(())
             }
             _ => Err("Unknown parameter"),

@@ -4,6 +4,7 @@ use crate::mgv_lib::{Market, OfferSide};
 use crate::chain_lib::User;
 use crate::strats::limit_order::LimitOrderStrategy;
 use crate::strats::arbitrage::ArbitrageStrategy;
+use crate::strats::kandel::KandelStrategy;
 use std::collections::HashMap;
 
 
@@ -45,10 +46,13 @@ impl StrategyFactory {
         
         // Register default strategies
         factory.register_strategy("limit_order", || {
-            Box::new(LimitOrderStrategy::new(0.0, 0, OfferSide::Bid))
+            Box::new(LimitOrderStrategy::new(0.0, 0.0, OfferSide::Bid))
         });
         factory.register_strategy("arbitrage", || {
-            Box::new(ArbitrageStrategy::new(0.1, 1000))
+            Box::new(ArbitrageStrategy::new(0.1, 1000.0))
+        });
+        factory.register_strategy("kandel", || {
+            Box::new(KandelStrategy::new())
         });
         
         factory

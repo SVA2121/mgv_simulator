@@ -33,10 +33,11 @@ pub enum OrderSide {
 pub struct Offer {
     pub maker:  Arc<Mutex<User>>,
     pub side: OfferSide,
-    pub price: u128,
-    pub volume: u128,
+    pub price: f64,
+    pub volume: f64,
     pub gasreq: u128,
-    pub post_hook: Option<Box<dyn FnMut(&mut Market, &mut User) + Send + 'static>>,
+    pub post_hook: Option<Arc<Mutex<Box<dyn FnMut(&mut Market, &mut User) + Send + 'static>>>>,
+
 }
 
 impl std::fmt::Debug for Offer {
@@ -66,7 +67,7 @@ impl Clone for Offer {
 }
 
 impl Offer {
-    pub fn new(maker: Arc<Mutex<User>>, side: OfferSide, price: u128, volume: u128, gasreq: u128) -> Self {
+    pub fn new(maker: Arc<Mutex<User>>, side: OfferSide, price: f64, volume: f64, gasreq: u128) -> Self {
         Self {
             maker,
             side,
@@ -81,13 +82,15 @@ impl Offer {
     where 
         F: FnMut(&mut Market, &mut User) + Send + 'static
     {
-        self.post_hook = Some(Box::new(hook));
+        self.post_hook = Some(Arc::new(Mutex::new(Box::new(hook))));
         self
     }
 
     pub fn execute_post_hook(&mut self, market: &mut Market, maker: &mut User) {
-        if let Some(hook) = &mut self.post_hook {
-            hook(market, maker);
+        if let Some(hook) = &self.post_hook {
+            if let Ok(mut hook) = hook.lock() {
+                hook(market, maker);
+            }
         }
     }
 }
@@ -147,11 +150,11 @@ impl Market {
         match offer.side {
             OfferSide::Bid => {
                 self.bids.push(offer);
-                self.bids.sort_by(|a, b| b.price.cmp(&a.price));
+                self.bids.sort_by(|a, b| b.price.partial_cmp(&a.price).expect("price compare error"));
             }
             OfferSide::Ask => {
                 self.asks.push(offer);
-                self.asks.sort_by(|a, b| a.price.cmp(&b.price));
+                self.asks.sort_by(|a, b| a.price.partial_cmp(&b.price).expect("price compare error"));
             }
         }
     }
@@ -178,7 +181,7 @@ impl Market {
     }
 
  
-    pub fn market_order(&mut self, taker: &Arc<Mutex<User>>, side: OrderSide, volume: u128) -> Result<(), &'static str> {
+    pub fn market_order(&mut self, taker: &Arc<Mutex<User>>, side: OrderSide, volume: f64) -> Result<(), &'static str> {
         let offers = match side {
             OrderSide::Buy => &self.asks,  // If user wants to buy (bid), look at asks
             OrderSide::Sell => &self.bids,  // If user wants to sell (ask), look at bids
@@ -190,16 +193,16 @@ impl Market {
         let mut offers_to_execute = 0;
         
         for offer in offers {
-            if remaining_volume == 0 {
+            if remaining_volume == 0.0 {
                 break;
             }
             total_gas += offer.gasreq;
-            remaining_volume = remaining_volume.saturating_sub(offer.volume);
+            remaining_volume -= offer.volume;
             offers_to_execute += 1;
         }
         
         // Check if we can fill the order
-        if remaining_volume > 0 {
+        if remaining_volume > 0.0 {
             return Err("Insufficient liquidity");
         }
 
@@ -238,13 +241,15 @@ impl Market {
             }
             
             // Execute post-hook if any
-            if let Some(mut hook) = offer.post_hook {
+            if let Some(hook) = &offer.post_hook {
                 let mut maker = offer.maker.lock().unwrap();
-                hook(self, &mut maker);
+                if let Ok(mut hook) = hook.lock() {
+                    hook(self, &mut maker);
+                }
             }
             
             remaining_volume -= trade_volume;
-            if remaining_volume == 0 {
+            if remaining_volume == 0.0 {
                 break;
             }
         }

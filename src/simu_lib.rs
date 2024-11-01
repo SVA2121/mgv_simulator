@@ -143,7 +143,14 @@ impl Simulator {
         Ok(())
     }
 
-    pub fn run_simulation(&mut self) -> Result<(), &'static str> {
+    pub fn run_simulation(&mut self, verbose: bool) -> Result<(), &'static str> {
+        if verbose {
+            println!("Running simulation...");
+            println!("Current block: {}", self.current_block);
+            println!("Price feed length: {}", self.price_feed.len());
+            println!("Users: {:?}", self.users);
+            println!("Market: {:?}", self.market);
+        }
         // Write initial balance data
         for (user_id, user) in &self.users {
             if let Ok(user) = user.lock() {
@@ -153,6 +160,10 @@ impl Simulator {
 
         while self.current_block < self.price_feed.len() as u64 {
             let price_point = &self.price_feed[self.current_block as usize];
+            if verbose {
+                println!("Price point: {}", price_point);
+                println!("Market: {}", self.market);
+            }
             
             // Collect all the actions we need to take
             let mut actions = Vec::new();
@@ -169,6 +180,10 @@ impl Simulator {
             // Execute the actions
             for (strategy_id, user) in actions {
                 if let Some(strategy) = self.strategies.get_mut(&strategy_id) {
+                    if verbose {
+                        println!("Executing strategy: {}", strategy_id);
+                        println!("User: {:?}", user);
+                    }
                     strategy.execute(price_point, &mut self.market, user)?;
                 }
             }
