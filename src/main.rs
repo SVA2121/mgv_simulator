@@ -2,44 +2,52 @@ use mgv_simulator::mgv_lib::Market;
 use mgv_simulator::simu_lib::Simulator;
 use mgv_simulator::simu_lib::PricePoint;
 use mgv_simulator::strats_lib::StrategyFactory;
+use mgv_simulator::strats::delayed_kandel::DelayedKandelStrategy;
+use mgv_simulator::strats::arbitrage::ArbitrageStrategy;
+use mgv_simulator::read_utils;
 
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::time::Instant;
 
 fn main() -> Result<(), &'static str> {
+    let start_time = Instant::now();
+    // Read price feed from input file
+    let price_feed = read_utils::read_price_feed("data/input/fast_test_input.txt")
+        .map_err(|_| "Failed to read price feed")?;
+
     // Initialize market and simulator
     let market = Market::new("WETH".to_string(), "USDC".to_string());
-    let quote_token = market.quote.clone();
-    let base_token = market.base.clone();
-    let price_feed = vec![PricePoint::new(0, 1000.0), PricePoint::new(1, 1052.0), PricePoint::new(2, 1002.0)];
     let mut simulator = Simulator::new(market, price_feed);
 
-    // Create user
-    let maker = simulator.add_user("maker".to_string(), 1000000.0);
-    maker.lock().unwrap().add_token_balance(&quote_token, 1500.0);
-    maker.lock().unwrap().add_token_balance(&base_token, 1.0);
-    let taker = simulator.add_user("taker".to_string(), 1000000.0);
-    
-    // Create strategy factory
-    let factory = StrategyFactory::new();
-    
-    // Create and configure strategy
-    let mut limit_strategy = factory.create_strategy("limit_order")
-        .ok_or("Strategy not found")?;
-    limit_strategy.set_parameter("trigger_price", 1500.0)?;
-    limit_strategy.set_parameter("volume", 1.0)?;
-    
-    // Add strategy to simulator
-    simulator.add_strategy("limit_1".to_string(), limit_strategy);
-    simulator.assign_strategy("maker", "limit_1")?;
-    let mut arbitrage_strategy = factory.create_strategy("arbitrage")
-        .ok_or("Strategy not found")?;
-    arbitrage_strategy.set_parameter("min_profit_threshold", 0.0)?;
-    arbitrage_strategy.set_parameter("max_volume_per_trade", 1000.0)?;
-    simulator.add_strategy("arbitrage_1".to_string(), arbitrage_strategy);
-    simulator.assign_strategy("taker", "arbitrage_1")?;
-    
+    // Create users
+    let kandel_user = simulator.add_user("kandel_user".to_string(), 10000000000000000000.0);
+    kandel_user.lock().unwrap().add_token_balance("WETH", 10.0);
+    kandel_user.lock().unwrap().add_token_balance("USDC", 10000.0);
+
+    let arb_user = simulator.add_user("arb_user".to_string(), 10000000000000000000.0);
+    arb_user.lock().unwrap().add_token_balance("WETH", 10.0);
+    arb_user.lock().unwrap().add_token_balance("USDC", 10000.0);
+
+    // Create strategies
+    let delayed_kandel = DelayedKandelStrategy::new(100, 100);
+    let arbitrage = ArbitrageStrategy::new(0.001, 1.0);
+
+    // Add strategies to simulator
+    simulator.add_strategy("delayed_kandel".to_string(), Box::new(delayed_kandel));
+    simulator.add_strategy("arbitrage".to_string(), Box::new(arbitrage));
+
+    // Assign strategies to users
+    simulator.assign_strategy("kandel_user", "delayed_kandel")?;
+    simulator.assign_strategy("arb_user", "arbitrage")?;
+
     // Run simulation
-    simulator.run_simulation(true)?;
-    simulator.print_metrics();
+    let show_progress = true;
+    let verbose = false;
+    simulator.run_simulation(show_progress, verbose)?;
     
+    let duration = start_time.elapsed();
+    println!("Simulation completed in: {:?}", duration);
+
     Ok(())
 }

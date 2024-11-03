@@ -12,8 +12,6 @@ pub struct User {
 impl User {
     /// Creates a new user with given ID and initial native
     pub fn new(id: String, initial_native: f64) -> Self {
-        let mut balances = HashMap::new();
-        balances.insert("Native".to_string(), initial_native);
         User {
             id,
             native: initial_native,

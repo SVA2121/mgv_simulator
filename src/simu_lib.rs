@@ -120,30 +120,46 @@ impl Simulator {
         Ok(())
     }
 
-    fn write_user_balance(&self, user_id: &str, block: u64, user: &User) -> std::io::Result<()> {
+    fn write_user_balance(&self, user_id: &str, block: u64, user: &User, truncate: bool) -> std::io::Result<()> {
 
         let file_path = format!("data/output/{}.txt", user_id);
         let mut file = OpenOptions::new()
             .create(true)
-            .append(true)
+            .write(true)
+            .truncate(truncate)
+            .append(!truncate)
             .open(file_path)?;
-
         let balance_list: Vec<String> = user.get_balance_list()
             .iter()
             .map(|b| format!("{}", b))
             .collect();
-        // Write balance data for this block
+
+        writeln!(file, "{},{}", block, balance_list.join(","))?;
+
+        Ok(())
+    }
+
+    fn write_market_state(&self, block: u64, truncate: bool) -> std::io::Result<()> {
+        let file_path = "data/output/market_state.txt";
+        let mut file = OpenOptions::new()
+            .create(true)
+            .write(true)
+            .truncate(truncate)
+            .append(!truncate)
+            .open(file_path)?;
+
+        // Write market state data for this block
         writeln!(
             file,
             "{},{}", 
             block,
-            balance_list.join(",")
+            self.market
         )?;
 
         Ok(())
     }
 
-    pub fn run_simulation(&mut self, verbose: bool) -> Result<(), &'static str> {
+    pub fn run_simulation(&mut self, show_progress: bool, verbose: bool) -> Result<(), &'static str> {
         if verbose {
             println!("Running simulation...");
             println!("Current block: {}", self.current_block);
@@ -151,19 +167,24 @@ impl Simulator {
             println!("Users: {:?}", self.users);
             println!("Market: {:?}", self.market);
         }
+        let total_steps = self.price_feed.len();
+        let progress_interval = total_steps / 10;
         // Write initial balance data
         for (user_id, user) in &self.users {
             if let Ok(user) = user.lock() {
-                self.write_user_balance(user_id, 0, &user);
+                self.write_user_balance(user_id, 0, &user, true);
             }
+        }
+        if let Err(_) = self.write_market_state(0, true) {
+            return Err("Failed to write initial market state");
         }
 
         while self.current_block < self.price_feed.len() as u64 {
-            let price_point = &self.price_feed[self.current_block as usize];
-            if verbose {
-                println!("Price point: {}", price_point);
-                println!("Market: {}", self.market);
+            if show_progress && self.current_block as usize % progress_interval == 0 {
+                println!("Simulation progress: {}%", (self.current_block as usize * 100) / total_steps);
             }
+            let price_point = &self.price_feed[self.current_block as usize];
+            
             
             // Collect all the actions we need to take
             let mut actions = Vec::new();
@@ -178,6 +199,11 @@ impl Simulator {
             }
             
             // Execute the actions
+            if verbose && !actions.is_empty() {
+                println!("Price point: {}", price_point);
+                println!("Market: {}", self.market);
+                println!("Actions: {:?}", actions);
+            }
             for (strategy_id, user) in actions {
                 if let Some(strategy) = self.strategies.get_mut(&strategy_id) {
                     if verbose {
@@ -191,14 +217,22 @@ impl Simulator {
             // Write balance data for each user
             for (user_id, user) in &self.users {
                 if let Ok(user) = user.lock() {
-                    if let Err(_) = self.write_user_balance(user_id, self.current_block, &user) {
+                    if let Err(_) = self.write_user_balance(user_id, self.current_block, &user, false) {
                         return Err("Failed to write balance data");
                     }
                 }
             }
-            
+            if let Err(_) = self.write_market_state(self.current_block, false) {
+                return Err("Failed to write market state");
+            }
+
             self.current_block += 1;
         }
+
+        if show_progress {
+            println!("Simulation progress: 100%");
+        }
+
         Ok(())
     }
 }

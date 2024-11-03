@@ -1,0 +1,1893 @@
+0,Market:
+  Bids:
+  Asks:
+
+0,Market:
+  Bids:
+  Asks:
+
+1,Market:
+  Bids:
+  Asks:
+
+2,Market:
+  Bids:
+  Asks:
+
+3,Market:
+  Bids:
+  Asks:
+
+4,Market:
+  Bids:
+  Asks:
+
+5,Market:
+  Bids:
+  Asks:
+
+6,Market:
+  Bids:
+  Asks:
+
+7,Market:
+  Bids:
+  Asks:
+
+8,Market:
+  Bids:
+  Asks:
+
+9,Market:
+  Bids:
+  Asks:
+
+10,Market:
+  Bids:
+  Asks:
+
+11,Market:
+  Bids:
+  Asks:
+
+12,Market:
+  Bids:
+  Asks:
+
+13,Market:
+  Bids:
+  Asks:
+
+14,Market:
+  Bids:
+  Asks:
+
+15,Market:
+  Bids:
+  Asks:
+
+16,Market:
+  Bids:
+  Asks:
+
+17,Market:
+  Bids:
+  Asks:
+
+18,Market:
+  Bids:
+  Asks:
+
+19,Market:
+  Bids:
+  Asks:
+
+20,Market:
+  Bids:
+  Asks:
+
+21,Market:
+  Bids:
+  Asks:
+
+22,Market:
+  Bids:
+  Asks:
+
+23,Market:
+  Bids:
+  Asks:
+
+24,Market:
+  Bids:
+  Asks:
+
+25,Market:
+  Bids:
+  Asks:
+
+26,Market:
+  Bids:
+  Asks:
+
+27,Market:
+  Bids:
+  Asks:
+
+28,Market:
+  Bids:
+  Asks:
+
+29,Market:
+  Bids:
+  Asks:
+
+30,Market:
+  Bids:
+  Asks:
+
+31,Market:
+  Bids:
+  Asks:
+
+32,Market:
+  Bids:
+  Asks:
+
+33,Market:
+  Bids:
+  Asks:
+
+34,Market:
+  Bids:
+  Asks:
+
+35,Market:
+  Bids:
+  Asks:
+
+36,Market:
+  Bids:
+  Asks:
+
+37,Market:
+  Bids:
+  Asks:
+
+38,Market:
+  Bids:
+  Asks:
+
+39,Market:
+  Bids:
+  Asks:
+
+40,Market:
+  Bids:
+  Asks:
+
+41,Market:
+  Bids:
+  Asks:
+
+42,Market:
+  Bids:
+  Asks:
+
+43,Market:
+  Bids:
+  Asks:
+
+44,Market:
+  Bids:
+  Asks:
+
+45,Market:
+  Bids:
+  Asks:
+
+46,Market:
+  Bids:
+  Asks:
+
+47,Market:
+  Bids:
+  Asks:
+
+48,Market:
+  Bids:
+  Asks:
+
+49,Market:
+  Bids:
+  Asks:
+
+50,Market:
+  Bids:
+  Asks:
+
+51,Market:
+  Bids:
+  Asks:
+
+52,Market:
+  Bids:
+  Asks:
+
+53,Market:
+  Bids:
+  Asks:
+
+54,Market:
+  Bids:
+  Asks:
+
+55,Market:
+  Bids:
+  Asks:
+
+56,Market:
+  Bids:
+  Asks:
+
+57,Market:
+  Bids:
+  Asks:
+
+58,Market:
+  Bids:
+  Asks:
+
+59,Market:
+  Bids:
+  Asks:
+
+60,Market:
+  Bids:
+  Asks:
+
+61,Market:
+  Bids:
+  Asks:
+
+62,Market:
+  Bids:
+  Asks:
+
+63,Market:
+  Bids:
+  Asks:
+
+64,Market:
+  Bids:
+  Asks:
+
+65,Market:
+  Bids:
+  Asks:
+
+66,Market:
+  Bids:
+  Asks:
+
+67,Market:
+  Bids:
+  Asks:
+
+68,Market:
+  Bids:
+  Asks:
+
+69,Market:
+  Bids:
+  Asks:
+
+70,Market:
+  Bids:
+  Asks:
+
+71,Market:
+  Bids:
+  Asks:
+
+72,Market:
+  Bids:
+  Asks:
+
+73,Market:
+  Bids:
+  Asks:
+
+74,Market:
+  Bids:
+  Asks:
+
+75,Market:
+  Bids:
+  Asks:
+
+76,Market:
+  Bids:
+  Asks:
+
+77,Market:
+  Bids:
+  Asks:
+
+78,Market:
+  Bids:
+  Asks:
+
+79,Market:
+  Bids:
+  Asks:
+
+80,Market:
+  Bids:
+  Asks:
+
+81,Market:
+  Bids:
+  Asks:
+
+82,Market:
+  Bids:
+  Asks:
+
+83,Market:
+  Bids:
+  Asks:
+
+84,Market:
+  Bids:
+  Asks:
+
+85,Market:
+  Bids:
+  Asks:
+
+86,Market:
+  Bids:
+  Asks:
+
+87,Market:
+  Bids:
+  Asks:
+
+88,Market:
+  Bids:
+  Asks:
+
+89,Market:
+  Bids:
+  Asks:
+
+90,Market:
+  Bids:
+  Asks:
+
+91,Market:
+  Bids:
+  Asks:
+
+92,Market:
+  Bids:
+  Asks:
+
+93,Market:
+  Bids:
+  Asks:
+
+94,Market:
+  Bids:
+  Asks:
+
+95,Market:
+  Bids:
+  Asks:
+
+96,Market:
+  Bids:
+  Asks:
+
+97,Market:
+  Bids:
+  Asks:
+
+98,Market:
+  Bids:
+  Asks:
+
+99,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+100,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+101,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+102,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+103,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+104,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+105,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+106,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+107,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+108,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+109,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+110,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+111,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+112,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+113,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+114,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+115,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+116,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+117,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+118,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+119,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+120,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+121,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+122,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+123,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+124,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+125,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+126,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+127,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+128,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+129,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+130,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+131,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+132,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+133,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+134,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+135,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+136,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+137,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+138,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+139,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+140,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+141,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+142,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+143,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+144,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+145,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+146,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+147,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+148,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+149,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+150,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+151,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+152,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+153,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+154,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+155,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+156,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+157,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+158,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+159,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+160,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+161,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+162,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+163,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+164,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+165,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+166,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+167,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+168,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+169,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+170,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+171,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+172,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+173,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+174,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+175,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+176,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+177,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+178,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+179,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+180,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+181,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+182,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+183,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+184,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+185,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+186,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+187,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+188,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+189,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+190,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+191,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+192,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+193,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+194,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+195,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+196,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+197,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+198,Market:
+  Bids:
+    0.4157896052706788 @ 2405.0625299999997 - kandel_user,false
+  Asks:
+    1 @ 2409.8774699999994 - kandel_user,false
+
+199,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+200,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+201,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+202,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+203,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+204,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+205,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+206,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+207,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+208,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+209,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+210,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+211,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+212,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+213,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+214,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+215,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+216,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+217,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+218,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+219,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+220,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+221,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+222,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+223,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+224,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+225,Market:
+  Bids:
+    0.415870793934774 @ 2404.593 - kandel_user,false
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+226,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+227,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+228,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+229,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+230,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+231,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+232,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+233,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+234,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+235,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+236,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+237,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+238,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+239,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+240,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+241,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+242,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+243,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+244,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+245,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+246,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+247,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+248,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+249,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+250,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+251,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+252,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+253,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+254,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+255,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+256,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+257,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+258,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+259,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+260,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+261,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+262,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+263,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+264,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+265,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+266,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+267,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+268,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+269,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+270,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+271,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+272,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+273,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+274,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+275,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+276,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+277,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+278,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+279,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+280,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+281,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+282,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+283,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+284,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+285,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+286,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+287,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+288,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+289,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+290,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+291,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+292,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+293,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+294,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+295,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+296,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+297,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+298,Market:
+  Bids:
+  Asks:
+    1 @ 2409.4069999999997 - kandel_user,false
+
+299,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+300,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+301,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+302,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+303,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+304,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+305,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+306,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+307,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+308,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+309,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+310,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+311,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+312,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+313,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+314,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+315,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+316,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+317,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+318,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+319,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+320,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+321,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+322,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+323,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+324,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+325,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+326,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+327,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+328,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+329,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+330,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+331,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+332,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+333,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+334,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+335,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+336,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+337,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+338,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+339,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+340,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+341,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+342,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+343,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+344,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+345,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+346,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+347,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+348,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+349,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+350,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+351,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+352,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+353,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+354,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+355,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+356,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+357,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+358,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
+359,Market:
+  Bids:
+    0.4162114406061467 @ 2402.6249700000003 - kandel_user,false
+  Asks:
+    1 @ 2407.43503 - kandel_user,false
+
