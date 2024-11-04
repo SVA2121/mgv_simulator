@@ -5,3 +5,4 @@ pub mod strats_lib;
 pub mod simu_lib;
 pub mod macros;
 pub mod strats;
+pub mod utils;

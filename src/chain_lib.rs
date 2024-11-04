@@ -37,13 +37,14 @@ impl User {
     }
 
 
-    pub fn add_token_balance(&mut self, token: &str, amount: f64) {
+    pub fn add_token_balance(&mut self, token: &str, amount: f64) -> Result<(), &'static str> {
         let balance = self.balances.entry(token.to_string()).or_insert(0.0);
         let new_balance = *balance + amount;
         if new_balance.is_finite() {
             *balance = new_balance;
+            Ok(())
         } else {
-            panic!("Token balance overflow when adding {} {}", amount, token);
+            Err("Token balance overflow")
         }
     }
 
@@ -74,7 +75,8 @@ impl User {
 
     pub fn spend_token_balance(&mut self, token: &str, amount: f64) -> Result<(), &'static str> {
         let balance = self.balances.get(token).unwrap_or(&0.0);
-
+        // println!("Debug: User {} attempting to spend {} {}", self.id, amount, token);
+        // println!("Debug: Current balance: {}", balance);
         if *balance >= amount {
             let new_balance = *balance - amount;
             if new_balance.is_finite() {
@@ -84,7 +86,7 @@ impl User {
                 Err("Invalid token balance after subtraction")
             }
         } else {
-            Err("Insufficient token balance")
+            Err("Insufficient token balance for user")
         }
     }
 }

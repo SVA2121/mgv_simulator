@@ -22,17 +22,18 @@ struct KandelParams {
 }
 
 impl DelayedKandelStrategy {
-    pub fn new(window_size: usize, recalibration_interval: u64) -> Self {
+    pub fn new(window_size: usize, recalibration_interval: u64, quote_amount: f64, base_amount: f64) -> Self {
         Self {
             window_size,
             recalibration_interval,
             price_history: VecDeque::with_capacity(window_size),
             last_calibration: 0,
+
             kandel_params: KandelParams {
                 grid_width: 0.001,    // 0.1% spread (changed from 5%)
-                num_levels: 1,        // Only 1 level on each side (changed from 5)
-                base_amount: 1.0,     // 1 base token total
-                quote_amount: 1000.0, // 1000 quote tokens total
+                num_levels: 10,        // Only 1 level on each side (changed from 5)
+                base_amount: base_amount,
+                quote_amount: quote_amount,
             },
             initialized: false,
         }
@@ -48,15 +49,13 @@ impl DelayedKandelStrategy {
             prev_price = price;
         }
 
-        // Calculate volatility (standard deviation of log returns)
-        let mean = log_returns.iter().sum::<f64>() / log_returns.len() as f64;
+        
         let variance = log_returns.iter()
-            .map(|&x| (x - mean).powi(2))
+            .map(|&x| (x).powi(2))
             .sum::<f64>() / (log_returns.len() - 1) as f64;
-        let sig = (variance.sqrt() / (365_f64).sqrt()); // Annualized volatility
-
+        let sig = variance.sqrt(); // Annualized volatility
         // Calculate price grid
-        let vol_mult = 1.645; // 90% confidence interval
+        let vol_mult = 0.4; 
         let range_multiplier = (vol_mult * sig).exp();
         let grid_step = range_multiplier.powf(1.0 / self.kandel_params.num_levels as f64);
 
@@ -83,20 +82,20 @@ impl DelayedKandelStrategy {
     
 
     fn deploy_kandel(&mut self, market: &mut Market, user: Arc<Mutex<User>>) -> Result<(), &'static str> {
-        let avg_price = self.price_history.iter().sum::<f64>() / self.price_history.len() as f64;
-        let price_grid = self.calculate_grid(&self.price_history, avg_price);
-        
+        //let avg_price = self.price_history.iter().sum::<f64>() / self.price_history.len() as f64;
+        let last_price = self.price_history[self.price_history.len() - 1];
+        let price_grid = self.geom_price_grid(&self.price_history, last_price);
         // Create and configure a new Kandel strategy
         let mut kandel = crate::strats::kandel::KandelStrategy::new();
         kandel.set_parameters(
             price_grid,
-            avg_price,
+            last_price,
             self.kandel_params.base_amount,
             self.kandel_params.quote_amount
         );
         
         // Execute the Kandel strategy
-        kandel.execute(&PricePoint::new(0, avg_price), market, user)?;
+        kandel.execute(&PricePoint::new(0, last_price), market, user)?;
         
         Ok(())
     }

@@ -23,3 +23,7 @@ Is this the same as MGV? -> Maxence
     - offer_write_cost 
     - taker_cost (gasbase)
     = order delete cost (to simulate MM than be both off/on chain)
+- Finish kandel test comparing with python
+    - check initial price grid prices and qty
+    - check order book at t=0
+    - check order book after 100 days

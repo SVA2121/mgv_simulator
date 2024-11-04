@@ -17,6 +17,10 @@ impl PricePoint {
     pub fn new(block: u64, price: f64) -> Self {
         Self { block, price }
     }
+
+    pub fn price_equals(&self, other: &PricePoint) -> bool {
+        (self.price - other.price).abs() < f64::EPSILON
+    }
 }
 
 impl std::fmt::Display for PricePoint {
@@ -179,12 +183,20 @@ impl Simulator {
             return Err("Failed to write initial market state");
         }
 
+        let mut last_price_point: Option<PricePoint> = None;
+        let mut last_write_block = 0u64;
+
         while self.current_block < self.price_feed.len() as u64 {
             if show_progress && self.current_block as usize % progress_interval == 0 {
                 println!("Simulation progress: {}%", (self.current_block as usize * 100) / total_steps);
             }
             let price_point = &self.price_feed[self.current_block as usize];
-            
+            if let Some(last_pp) = last_price_point {
+                if price_point.price_equals(&last_pp) {
+                    self.current_block += 1;
+                    continue;
+                }
+            }
             
             // Collect all the actions we need to take
             let mut actions = Vec::new();

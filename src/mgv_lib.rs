@@ -224,19 +224,50 @@ impl Market {
             // Transfer tokens
             match side {
                 OrderSide::Buy => {
-
                     // Taker sends quote tokens, receives base tokens
-                    taker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64)?;
-                    offer.maker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64);
-                    taker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64);
-                    offer.maker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64)?;
+                    if let Err(e) = taker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64) {
+                        let user_id = taker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to spend {} {}: {}", user_id, trade_amount, self.quote, e);
+                        return Err("Insufficient token balance for taker");
+                    }
+                    if let Err(e) = offer.maker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64) {
+                        let user_id = offer.maker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to receive {} {}: {}", user_id, trade_amount, self.quote, e);
+                        return Err("Failed to add token balance to maker");
+                    }
+                    if let Err(e) = taker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64) {
+                        let user_id = taker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to receive {} {}: {}", user_id, trade_volume, self.base, e);
+                        return Err("Failed to add token balance to taker");
+                    }
+                    if let Err(e) = offer.maker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64) {
+                        let user_id = offer.maker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to spend {} {}: {}", user_id, trade_volume, self.base, e);
+                        return Err("Insufficient token balance for maker");
+                    }
                 }
                 OrderSide::Sell => {
                     // Taker sends base tokens, receives quote tokens
-                    taker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64)?;
-                    offer.maker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64);
-                    taker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64);
-                    offer.maker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64)?;
+                    if let Err(e) = taker.lock().unwrap().spend_token_balance(&self.base, trade_volume as f64) {
+                        let user_id = taker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to spend {} {}: {}", user_id, trade_volume, self.base, e);
+                        return Err("Insufficient token balance for taker");
+                    }
+                    if let Err(e) = offer.maker.lock().unwrap().add_token_balance(&self.base, trade_volume as f64) {
+                        let user_id = offer.maker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to receive {} {}: {}", user_id, trade_volume, self.base, e);
+                        return Err("Failed to add token balance to maker");
+                    }
+                    if let Err(e) = taker.lock().unwrap().add_token_balance(&self.quote, trade_amount as f64) {
+                        let user_id = taker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to receive {} {}: {}", user_id, trade_amount, self.quote, e);
+                        return Err("Failed to add token balance to taker");
+                    }
+                    if let Err(e) = offer.maker.lock().unwrap().spend_token_balance(&self.quote, trade_amount as f64) {
+                        let user_id = offer.maker.lock().unwrap().id.clone();
+                        println!("Error: User {} failed to spend {} {}: {}", user_id, trade_amount, self.quote, e);
+                        return Err("Insufficient token balance for maker");
+                    }
                 }
             }
             
@@ -264,17 +295,17 @@ impl Market {
 impl std::fmt::Display for Market {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         writeln!(f, "Market:")?;
+
+        writeln!(f, "  Asks:")?;
+        for ask in self.asks.iter().rev() {
+            let user_id = ask.maker.lock().map(|user| user.id.clone()).unwrap_or_else(|_| "locked".to_string()); 
+            writeln!(f, "    {} @ {} - {},{}", ask.volume, ask.price, user_id, ask.post_hook.is_some())?;
+        }
         
         writeln!(f, "  Bids:")?;
         for bid in &self.bids {
             let user_id = bid.maker.lock().map(|user| user.id.clone()).unwrap_or_else(|_| "locked".to_string());
             writeln!(f, "    {} @ {} - {},{}", bid.volume, bid.price, user_id, bid.post_hook.is_some())?;
-        }
-        
-        writeln!(f, "  Asks:")?;
-        for ask in &self.asks {
-            let user_id = ask.maker.lock().map(|user| user.id.clone()).unwrap_or_else(|_| "locked".to_string()); 
-            writeln!(f, "    {} @ {} - {},{}", ask.volume, ask.price, user_id, ask.post_hook.is_some())?;
         }
         
         Ok(())
