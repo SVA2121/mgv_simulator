@@ -8,7 +8,7 @@ macro_rules! new_user {
 
 #[macro_export]
 macro_rules! new_offer {
-    ($user:expr, $side:expr, $price:expr, $volume:expr, $gasreq:expr) => {
-        Offer::new(Arc::clone(&$user), $side, $price, $volume, $gasreq)
+    ($maker:expr, $side:expr, $price:expr, $volume:expr, $gasreq:expr, $strategy:expr) => {
+        Offer::new($maker, $side, $price, $volume, $gasreq, $strategy)
     };
 }

@@ -1,9 +1,10 @@
 use crate::strats_lib::Strategy;
 use crate::simu_lib::PricePoint;
-use crate::mgv_lib::{Market, OrderSide};
+use crate::mgv_lib::{Market, OrderSide, Offer};
 use crate::chain_lib::User;
 use std::sync::{Arc, Mutex};
 
+#[derive(Clone)]
 pub struct ArbitrageStrategy {
     min_profit_threshold: f64,
     max_volume_per_trade: f64,
@@ -33,43 +34,60 @@ impl Strategy for ArbitrageStrategy {
         market: &mut Market,
         user: Arc<Mutex<User>>,
     ) -> Result<(), &'static str> {
-        
-        // Get best bid and ask from the market
-        let best_bid_price = market.best_bid().map(|o| o.price as f64);
-        let best_ask_price = market.best_ask().map(|o| o.price as f64);
-        let best_bid_volume = market.best_bid().map(|o| o.volume);
-        let best_ask_volume = market.best_ask().map(|o| o.volume);
         let reference_price = price_point.price;
         
-
-        // Check for arbitrage opportunities
-        if let Some(best_bid_price) = best_bid_price {
-            if best_bid_price > reference_price + self.min_profit_threshold {
-                // Sell at the bid price (higher than reference)
-                let volume = best_bid_volume
-                    .map(|v| v.min(self.max_volume_per_trade))
-                    .unwrap_or(self.max_volume_per_trade);
-                user.lock().unwrap().add_token_balance(&market.base, volume as f64);
-                market.market_order(&user, OrderSide::Sell, volume)?;
-                user.lock().unwrap().spend_token_balance(&market.quote, reference_price * volume as f64)?;
-
+        loop {
+            // Get market state and immediately drop the references
+            let best_bid = market.best_bid();
+            let best_ask = market.best_ask();
+            
+            // Exit if no orders in the book
+            if best_bid.is_none() && best_ask.is_none() {
+                break;
+            }
+    
+            let mut traded = false;
+    
+            // Process bid side first, without holding any references
+            if let Some(bid) = best_bid {
+                if (bid.price as f64) - reference_price > self.min_profit_threshold {
+                    let volume = bid.volume.min(self.max_volume_per_trade);
+                    user.lock().unwrap().add_token_balance(&market.base, volume as f64);
+                    market.market_order(&user, OrderSide::Sell, volume)?;
+                    user.lock().unwrap().spend_token_balance(&market.quote, reference_price * volume as f64)?;
+                    traded = true;
+                    // Continue to next iteration immediately if we traded
+                    continue;
+                }
+            }
+    
+            // Process ask side if we didn't trade on bid side
+            if let Some(ask) = best_ask {
+                if reference_price - (ask.price as f64) > self.min_profit_threshold {
+                    let volume = ask.volume.min(self.max_volume_per_trade);
+                    user.lock().unwrap().add_token_balance(&market.quote, reference_price * volume as f64);
+                    market.market_order(&user, OrderSide::Buy, volume)?;
+                    user.lock().unwrap().spend_token_balance(&market.base, volume as f64)?;
+                    traded = true;
+                    continue;
+                }
+            }
+    
+            // Exit if no profitable trades were made this iteration
+            if !traded {
+                break;
             }
         }
+    
+        Ok(())
+    }
 
-        if let Some(best_ask_price) = best_ask_price {
-
-            if best_ask_price < reference_price - self.min_profit_threshold {
-                // Buy at the ask price (lower than reference)
-                let volume = best_ask_volume
-                    .map(|v| v.min(self.max_volume_per_trade))
-                    .unwrap_or(self.max_volume_per_trade);
-                user.lock().unwrap().add_token_balance(&market.quote, volume as f64);
-                market.market_order(&user, OrderSide::Buy, volume)?;
-                user.lock().unwrap().spend_token_balance(&market.base, reference_price * volume as f64)?;
-
-            }
-        }
-
+    fn post_hook(
+        &mut self,
+        market: &mut Market,
+        maker: Arc<Mutex<User>>,
+        filled_offer: &Offer,
+    ) -> Result<(), &'static str> {
         Ok(())
     }
 

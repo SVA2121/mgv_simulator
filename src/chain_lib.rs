@@ -86,6 +86,7 @@ impl User {
                 Err("Invalid token balance after subtraction")
             }
         } else {
+
             Err("Insufficient token balance for user")
         }
     }

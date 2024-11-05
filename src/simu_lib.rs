@@ -143,7 +143,7 @@ impl Simulator {
         Ok(())
     }
 
-    fn write_market_state(&self, block: u64, truncate: bool) -> std::io::Result<()> {
+    fn write_market_state(&self, block: u64, truncate: bool, price_point: &PricePoint) -> std::io::Result<()> {
         let file_path = "data/output/market_state.txt";
         let mut file = OpenOptions::new()
             .create(true)
@@ -155,8 +155,9 @@ impl Simulator {
         // Write market state data for this block
         writeln!(
             file,
-            "{},{}", 
+            "{},{},{}", 
             block,
+            price_point.price,
             self.market
         )?;
 
@@ -166,33 +167,48 @@ impl Simulator {
     pub fn run_simulation(&mut self, show_progress: bool, verbose: bool) -> Result<(), &'static str> {
         if verbose {
             println!("Running simulation...");
-            println!("Current block: {}", self.current_block);
             println!("Price feed length: {}", self.price_feed.len());
             println!("Users: {:?}", self.users);
             println!("Market: {:?}", self.market);
+            println!("--------------------------------");
+            println!("--------------------------------");
         }
         let total_steps = self.price_feed.len();
         let progress_interval = total_steps / 10;
+        
+
+        let mut last_price_point: Option<PricePoint> = None;
+        let mut last_write_block = 0u64;
+
         // Write initial balance data
         for (user_id, user) in &self.users {
             if let Ok(user) = user.lock() {
                 self.write_user_balance(user_id, 0, &user, true);
             }
         }
-        if let Err(_) = self.write_market_state(0, true) {
+        if let Err(_) = self.write_market_state(0, true, &self.price_feed[0]) {
             return Err("Failed to write initial market state");
         }
-
-        let mut last_price_point: Option<PricePoint> = None;
-        let mut last_write_block = 0u64;
-
+        let mut price_point = &self.price_feed[0];
         while self.current_block < self.price_feed.len() as u64 {
             if show_progress && self.current_block as usize % progress_interval == 0 {
                 println!("Simulation progress: {}%", (self.current_block as usize * 100) / total_steps);
             }
-            let price_point = &self.price_feed[self.current_block as usize];
+
+            price_point = &self.price_feed[self.current_block as usize];
             if let Some(last_pp) = last_price_point {
                 if price_point.price_equals(&last_pp) {
+                    // Write balance data for each user
+                    for (user_id, user) in &self.users {
+                        if let Ok(user) = user.lock() {
+                            if let Err(_) = self.write_user_balance(user_id, self.current_block, &user, false) {
+                                return Err("Failed to write balance data");
+                            }
+                        }
+                    }
+                    if let Err(_) = self.write_market_state(self.current_block, false, price_point) {
+                        return Err("Failed to write market state");
+                    }
                     self.current_block += 1;
                     continue;
                 }
@@ -212,10 +228,12 @@ impl Simulator {
             
             // Execute the actions
             if verbose && !actions.is_empty() {
+                println!("--------------------------------");
                 println!("Price point: {}", price_point);
                 println!("Market: {}", self.market);
                 println!("Actions: {:?}", actions);
             }
+
             for (strategy_id, user) in actions {
                 if let Some(strategy) = self.strategies.get_mut(&strategy_id) {
                     if verbose {
@@ -234,7 +252,7 @@ impl Simulator {
                     }
                 }
             }
-            if let Err(_) = self.write_market_state(self.current_block, false) {
+            if let Err(_) = self.write_market_state(self.current_block, false, price_point) {
                 return Err("Failed to write market state");
             }
 

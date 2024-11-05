@@ -1,10 +1,11 @@
 use std::sync::{Arc, Mutex};
 use crate::simu_lib::PricePoint;
-use crate::mgv_lib::{Market, OfferSide};
+use crate::mgv_lib::{Market, OfferSide, Offer};
 use crate::chain_lib::User;
 use crate::strats::limit_order::LimitOrderStrategy;
 use crate::strats::arbitrage::ArbitrageStrategy;
 use crate::strats::kandel::KandelStrategy;
+use crate::strats::active_kandel::ActiveKandelStrategy;
 use std::collections::HashMap;
 
 
@@ -20,6 +21,13 @@ pub trait Strategy: Send + Sync {
         market: &mut Market,
         user: Arc<Mutex<User>>,
     ) -> Result<(), &'static str>;
+
+    fn post_hook(
+        &mut self,
+        market: &mut Market,
+        maker: Arc<Mutex<User>>,
+        filled_offer: &Offer,
+    ) -> Result<(), &'static str>;
     
     // Optional methods for strategy parameters
     fn set_parameter(&mut self, name: &str, value: f64) -> Result<(), &'static str> {
@@ -29,6 +37,7 @@ pub trait Strategy: Send + Sync {
     fn get_parameter(&self, name: &str) -> Option<f64> {
         None
     }
+
 }
 
 
@@ -52,7 +61,10 @@ impl StrategyFactory {
             Box::new(ArbitrageStrategy::new(0.1, 1000.0))
         });
         factory.register_strategy("kandel", || {
-            Box::new(KandelStrategy::new())
+            Box::new(KandelStrategy::new(0.0, 0.0, 0.0, None, None, None).unwrap())
+        });
+        factory.register_strategy("active_kandel", || {
+            Box::new(ActiveKandelStrategy::new(3600, 3600, 0.0, 0.0))
         });
         
         factory
